@@ -25,8 +25,9 @@
       type: 'player-join',
       player: {
         name: playerName,
-        type: 'civilian',
-        state: 'alive'
+        score: 0,
+        objectives: [],
+        charm: {}
       },
       room: room.toLowerCase(),
       remote: true,

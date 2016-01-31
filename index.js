@@ -100,6 +100,7 @@ function createRoom() {
     round: 1,
     dirty: true,
     name: roomName,
+    objectives: []
   };
 
   console.log('room created: ', roomName);
@@ -109,9 +110,44 @@ function createRoom() {
 function configurePlayers(roomName) {
   var game = rooms[roomName];
   var players = game.players;
+  var objectiveSelection = [];
+  var possibleObjective = 0;
+  var objectiveFound = true;
+  var firstObjective = 0;
+  var secondObjective = 0;
+
+  while (objectiveSelection.length < constants['OBJECTIVE_SELECTION']) {
+    objectiveFound = true;
+    possibleObjective = Math.floor(Math.random() * constants['OBJECTIVES'].length);
+
+    for (var i = 0; i < objectiveSelection.length; i++) {
+      if (constants['OBJECTIVES'][possibleObjective].name === constants['OBJECTIVES'][objectiveSelection[i]].name ||
+          constants['OBJECTIVES'][possibleObjective].color === constants['OBJECTIVES'][objectiveSelection[i]].color ||
+          constants['OBJECTIVES'][possibleObjective].shape === constants['OBJECTIVES'][objectiveSelection[i]].shape) {
+        objectiveFound = false;
+        break;
+      }
+    }
+
+    if (objectiveFound) {
+      objectiveSelection.push(possibleObjective);
+    }
+  }
+
+  for (i = 0; i < players.length; i++) {
+    firstObjective = Math.floor(Math.random() * objectiveSelection.length);
+    secondObjective = Math.floor(Math.random() * objectiveSelection.length);
+
+    while (secondObjective === firstObjective) {
+      secondObjective = Math.floor(Math.random() * objectiveSelection.length);
+    }
+    players[i].objectives.push(firstObjective);
+    players[i].objectives.push(secondObjective);
+  }
 
   game.timeStarted = new Date().valueOf();
   game.state = constants['GAME_STATE']['INTRO'];
+  game.objectives = objectiveSelection.slice(0);
 }
 
 function gameUpdate() {

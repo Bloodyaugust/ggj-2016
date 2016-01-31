@@ -19,7 +19,49 @@
       'SCORE': 4,
       'FINAL_SCORE': 5,
     },
+    'OBJECTIVES': [
+    {
+      name: 'Tiger Entrails',
+      color: 'red',
+      shape: 'tangle'
+    },
+    {
+      name: 'Tiger asdasd',
+      color: 'blue',
+      shape: 'tangle'
+    },
+    {
+      name: 'Tiger Entraasdasils',
+      color: 'green',
+      shape: 'tangle'
+    },
+    {
+      name: 'Tiger qweasd',
+      color: 'yellow',
+      shape: 'tangle'
+    },    {
+      name: 'Tiger asldkdklsf',
+      color: 'red',
+      shape: 'fiber'
+    },
+    {
+      name: 'Tiger qewredzfzas',
+      color: 'blue',
+      shape: 'coolthing'
+    },
+    {
+      name: 'Tiger sadzdfgg',
+      color: 'green',
+      shape: 'ganja'
+    },
+    {
+      name: 'Tiger afawe',
+      color: 'yellow',
+      shape: 'cretin'
+    }
+    ],
     'INTRO_LENGTH': 15 * 1000,
+    'OBJECTIVE_SELECTION': 4,
     'SCORE_LENGTH': 10 * 1000,
     'ROUND_LENGTH': 30 * 1000,
     'ROUNDS_PER_GAME': 5,
