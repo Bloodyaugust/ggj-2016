@@ -93,6 +93,13 @@ body {
       position: relative;
       top: -16px;
     }
+
+    .objective-title {
+      font-family: $main-font-family;
+      font-size: 25px;
+      line-height: 40px;
+      font-style: bold;
+    }
   }
   .card:hover {
     @include card(1);
