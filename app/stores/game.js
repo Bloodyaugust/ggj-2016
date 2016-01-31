@@ -3,11 +3,11 @@
   listeners = [];
 
   game.update = function (data) {
-    if (data.type === 'game') {
+    /*if (data.type === 'game') {
       state = data.game;
       game.emit();
       console.log('Game update ', data);
-    }
+    }*/
   };
 
   game.register = function (callback) {
