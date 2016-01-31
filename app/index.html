@@ -44,12 +44,10 @@
             <p>for the rest, trouble awaits.</p>
           </i>
         </div>
-        <div class="card game-start">
-          <div class="button">Start</div>
-        </div>
+        <div class="button">Start</div>
       </section>
       <section class="host-intro hide" data-view="host-intro">
-        <div class="active card rules">
+        <div class="active subcard rules">
           <p>On the <span class="emphasis">PUBLIC SCREEN</span>, the Weirding Sisters continually add ingredients to the cauldron.</p>
           <p>Your <span class="emphasis">PERSONAL SCREEN</span> will show two random ingredients. These two are important to you!</p>
           <p>You may <span class="emphasis">DRINK</span> from the cauldron <span class="emphasis">ONCE PER ROUND</span>. You'll earn points based on how many of each of your two ingredients have been added so far.</p>
@@ -62,10 +60,13 @@
 
       </section>
       <section class="host-score hide" data-view="host-score">
-        <div class="card leader">
-          <span class="lead-player">Player</span> has the lead with <span class="lead-score">0</span> points and feels very <span class="lead-emotion">angry</span>
+        <section class="active card host-score" data-view="host-score">
+          <div class="title">ROUND OVER</div>
+        </section>
+        <div class="subcard leader">
+          <span class="lead-player">Player</span> has the lead with <span class="lead-score">0</span> points and feels very <span class="lead-emotion">smug</span>
         </div>
-        <div class="card active misfortunes">
+        <div class="subcard active misfortunes">
           <p class="heading">Account of grave misfortunes:</p>
           <div class="player-misfortunes">
             <span class="player">Player</span> <span class="action">turned into a</span> <span class="adjective">newt</span>
@@ -77,11 +78,14 @@
         </div>
       </section>
       <section class="host-final-score hide" data-view="host-final-score">
-        <div class="card winner">
+        <section class="active card host-final-score" data-view="host-final-score">
+          <div class="title">GAME OVER</div>
+        </section>
+        <div class="subcard winner">
           <p><span class="player">Player</span> scored 9 points to win the game!</p>
           <p><span class="player">Player</span>'s fate is revealed&hellip;</p>
         </div>
-        <div class="card fortune">
+        <div class="subcard fortune">
           <p>YOU WILL PROBABLY FIND ANSWERS IN A FOREIGN COUNTRY</p>
         </div>
         <div class="card new-game">
@@ -112,7 +116,7 @@
       <section class="player-round hide" data-view="player-round">
         <section class="card active player-info">
         </section>
-        <div class="card">The game will begin shortly, be prepared!</div>
+        <div class="card">Waiting for host to start the game...</div>
       </section>
       <section class="player-score hide" data-view="player-score">
       </section>
