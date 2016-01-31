@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans:200|Amatic+SC:200,700' rel='stylesheet' type='text/css'>
     <script src="//localhost:1337/livereload.js"></script>
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="socket.io-client/socket.io.js"></script>
@@ -16,24 +17,32 @@
     <script src="views/ui.js" defer></script>
   </head>
   <body>
-    <header>Witches Brew</header>
     <section class="main-content">
       <section class="active card make-connection" data-view="make-connection">
+        <div class="title">WITCHES BREW</div>
+      </section>
+      <section class="make-connection" data-view="make-connection">
         <div class="button host view-select" data-view="hosting">Host Game</div>
-        <div class="button join view-select" data-view="player-config">Join Game</div>
+        <div class="button-alt join view-select" data-view="player-config">Join Game</div>
       </section>
       <section class="hosting hide" data-view="hosting">
         <div class="card finding-room">Getting you a new room code...</div>
-        <div class="card room hide">
+        <section class="active card room" data-view="hosting">
+          <div class="title">WITCHES BREW</div>
+        </section>
+        <div class="subcard room hide">
           Enter this code to join the game:
           <span class="room-name"></span>
         </div>
-        <h2>Players</h2>
-        <div class="card players"><span class="player-count">0</span> pilgrims have joined so far&hellip;</div>
-        <div class="card game-description">
-          <p>The Weirding Sisters congregate.</p>
-          <p>Their brew is known to educate the pilgrims coming to partake.</p>
-          <p>A lucky few will learn their fate; for the rest, trouble awaits.</p>
+        <div class="subcard players"><span class="player-count">0</span> pilgrims have joined so far&hellip;</div>
+        <div class="subcard game-description">
+          <i>
+            <p>The Weirding Sisters congregate.</p>
+            <p>Their brew is known to educate</p>
+            <p>the pilgrims coming to partake.</p>
+            <p>A lucky few will learn their fate;</p>
+            <p>for the rest, trouble awaits.</p>
+          </i>
         </div>
         <div class="card game-start">
           <div class="button">Start</div>
@@ -82,11 +91,18 @@
         </div>
       </section>
       <section class="player-config hide" data-view="player-config">
-        <div class="active card player-data">
-          <input class="lower" type="text" name="code" placeholder="Room Code" autofocus></input>
-          <input type="text" name="name" placeholder="Name"></input>
-          <div class="button">Join</div>
+        <section class="active card player-config" data-view="player-config">
+          <div class="title">WITCHES BREW</div>
+        </section>
+        <div class="active subcard player-data">
+          <p>Room code</p>
+          <input class="lower" type="text" name="code" autofocus></input>
         </div>
+        <div class="active subcard player-data">
+          <p>Player name</p>
+          <input type="text" name="name"></input>
+        </div>
+        <div class="button">Join</div>
       </section>
       <section class="waiting hide" data-view="waiting">
         <h2>Players</h2>
