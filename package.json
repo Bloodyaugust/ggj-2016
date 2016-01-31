@@ -1,6 +1,6 @@
 {
   "name": "witches-brew",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "GGJ 2016 entry.",
   "main": "index.js",
   "scripts": {
