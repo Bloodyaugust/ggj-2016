@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles/css/main.css">
+    <script src="//localhost:1337/livereload.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/socket.io-client/socket.io.js"></script>
+    <script src="app/app.js" defer></script>
+    <script src="app/constants.js" defer></script>
+    <script src="app/dispatcher.js" defer></script>
+    <script src="app/actions.js" defer></script>
+    <script src="app/stores/game.js" defer></script>
+    <script src="app/stores/client.js" defer></script>
+    <script src="app/views/ui.js" defer></script>
+  </head>
+  <body>
+    <header>Witches Brew</header>
+    <section class="main-content">
+      <section class="active card make-connection" data-view="make-connection">
+        <div class="button host view-select" data-view="hosting">Host Game</div>
+        <div class="button join view-select" data-view="player-config">Join Game</div>
+      </section>
+      <section class="hosting hide">
+        <div class="card finding-room">Getting you a new room code...</div>
+        <div class="card room hide">
+          Your Room Code
+          <span class="room-name"></span>
+        </div>
+        <h2>Players</h2>
+        <div class="card players"></div>
+        <div class="card game-start">
+          <div class="button">Start Game</div>
+        </div>
+      </section>
+      <section class="host-intro hide">
+        <div class="active card">This shit is so cool, just play it and see.</div>
+      </section>
+      <section class="host-recap hide">
+
+      </section>
+      <section class="player-config hide">
+        <div class="active card player-data">
+          <input class="lower" type="text" name="code" placeholder="Room Code" autofocus></input>
+          <input type="text" name="name" placeholder="Name"></input>
+          <div class="button">Join</div>
+        </div>
+      </section>
+      <section class="waiting-players hide">
+        <h2>Players</h2>
+        <div class="active card players"></div>
+        <span>Waiting for players...</span>
+      </section>
+      <section class="game-info hide">
+        <section class="card active player-info">
+        </section>
+        <div class="card">The game will begin shortly, be prepared!</div>
+      </section>
+      <section class="game hide">
+      </section>
+      <section class="hide game-end">
+        <div class="card new-game">
+          Would you like to play again?
+          <div class="button same-players">Same Players</div>
+          <div class="button new-players">New Players</div>
+        </div>
+      </section>
+    </section>
+  </body>
+</html>

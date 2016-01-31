@@ -1,0 +1,30 @@
+{
+  "name": "witches-brew",
+  "version": "0.0.0",
+  "authors": [
+    "Bloodyaugust <greysonrichey@gmail.com>",
+    "Greg Squire",
+    "Josh Sutphin"
+  ],
+  "description": "GGJ 2016 entry.",
+  "main": "index.js",
+  "moduleType": [],
+  "keywords": [
+    "party",
+    "html5",
+    "game"
+  ],
+  "license": "MIT",
+  "homepage": "http://synsugarstudio.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "socket.io-client": "~1.3.7"
+  }
+}
