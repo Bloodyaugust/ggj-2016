@@ -22,49 +22,83 @@
         <div class="button host view-select" data-view="hosting">Host Game</div>
         <div class="button join view-select" data-view="player-config">Join Game</div>
       </section>
-      <section class="hosting hide">
+      <section class="hosting hide" data-view="hosting">
         <div class="card finding-room">Getting you a new room code...</div>
         <div class="card room hide">
-          Your Room Code
+          Enter this code to join the game:
           <span class="room-name"></span>
         </div>
         <h2>Players</h2>
-        <div class="card players"></div>
+        <div class="card players"><span class="player-count">0</span> pilgrims have joined so far&hellip;</div>
+        <div class="card game-description">
+          <p>The Weirding Sisters congregate.</p>
+          <p>Their brew is known to educate the pilgrims coming to partake.</p>
+          <p>A lucky few will learn their fate; for the rest, trouble awaits.</p>
+        </div>
         <div class="card game-start">
-          <div class="button">Start Game</div>
+          <div class="button">Start</div>
         </div>
       </section>
-      <section class="host-intro hide">
-        <div class="active card">This shit is so cool, just play it and see.</div>
+      <section class="host-intro hide" data-view="host-intro">
+        <div class="active card rules">
+          <p>On the <span class="emphasis">PUBLIC SCREEN</span>, the Weirding Sisters continually add ingredients to the cauldron.</p>
+          <p>Your <span class="emphasis">PERSONAL SCREEN</span> will show two random ingredients. These two are important to you!</p>
+          <p>You may <span class="emphasis">DRINK</span> from the cauldron <span class="emphasis">ONCE PER ROUND</span>. You'll earn points based on how many of each of your two ingredients have been added so far.</p>
+          <p>Don't wait too long to drink: the mixture in the cauldron is unstable and <span class="emphasis">MAY EXPLODE WITHOUT WARNING!</span></p>
+          <p>If the mixture explodes before you drink, you score <span class="emphasis">ZERO</span> points for the round and may suffer <span class="emphasis">GRAVE MISFORTUNE</span></p>
+          <p>The pilgrim with the most points after five rounds will have their <span class="emphasis">FATE REVEALED</span>.</p>
+        </div>
       </section>
-      <section class="host-recap hide">
+      <section class="host-round hide" data-view="host-round">
 
       </section>
-      <section class="player-config hide">
+      <section class="host-score hide" data-view="host-score">
+        <div class="card leader">
+          <span class="lead-player">Player</span> has the lead with <span class="lead-score">0</span> points and feels very <span class="lead-emotion">angry</span>
+        </div>
+        <div class="card active misfortunes">
+          <p class="heading">Account of grave misfortunes:</p>
+          <div class="player-misfortunes">
+            <span class="player">Player</span> <span class="action">turned into a</span> <span class="adjective">newt</span>
+          </div>
+        </div>
+        <div class="card round-timer">
+          <p>NEXT ROUND IN</p>
+          <div class="progress-bar"></div>
+        </div>
+      </section>
+      <section class="host-final-score hide" data-view="host-final-score">
+        <div class="card winner">
+          <p><span class="player">Player</span> scored 9 points to win the game!</p>
+          <p><span class="player">Player</span>'s fate is revealed&hellip;</p>
+        </div>
+        <div class="card fortune">
+          <p>YOU WILL PROBABLY FIND ANSWERS IN A FOREIGN COUNTRY</p>
+        </div>
+        <div class="card new-game">
+          Would you like to play again?
+          <div class="button same-players">Same Players</div>
+          <div class="button new-players">New Players</div>
+        </div>
+      </section>
+      <section class="player-config hide" data-view="player-config">
         <div class="active card player-data">
           <input class="lower" type="text" name="code" placeholder="Room Code" autofocus></input>
           <input type="text" name="name" placeholder="Name"></input>
           <div class="button">Join</div>
         </div>
       </section>
-      <section class="waiting-players hide">
+      <section class="waiting hide" data-view="waiting">
         <h2>Players</h2>
         <div class="active card players"></div>
         <span>Waiting for players...</span>
       </section>
-      <section class="game-info hide">
+      <section class="player-round hide" data-view="player-round">
         <section class="card active player-info">
         </section>
         <div class="card">The game will begin shortly, be prepared!</div>
       </section>
-      <section class="game hide">
-      </section>
-      <section class="hide game-end">
-        <div class="card new-game">
-          Would you like to play again?
-          <div class="button same-players">Same Players</div>
-          <div class="button new-players">New Players</div>
-        </div>
+      <section class="player-score hide" data-view="player-score">
       </section>
     </section>
   </body>
