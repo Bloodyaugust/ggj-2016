@@ -8,6 +8,7 @@
     <script src="//localhost:1337/livereload.js"></script>
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="socket.io-client/socket.io.js"></script>
+    <script src="mustache/mustache.min.js"></script>
     <script src="app.js" defer></script>
     <script src="constants.js" defer></script>
     <script src="dispatcher.js" defer></script>
@@ -109,29 +110,31 @@
         <div class="button">Join</div>
       </section>
       <section class="waiting hide" data-view="waiting">
-        <h2>Players</h2>
-        <div class="active card players"></div>
-        <span>Waiting for players...</span>
+        <span>Waiting for host...</span>
       </section>
       <section class="player-round hide" data-view="player-round">
-        <section class="card active player-info">
-        </section>
-        <div class="card">Waiting for host to start the game...</div>
+        <div class="card active player-objectives">
+          <div class="objective"><img src="http://lorempixel.com/50/50"><span class="objective-name">Eye of Newt</span></div>
+          <div class="objective"><img src="http://lorempixel.com/50/50"><span class="objective-name">Eye of Newt</span></div>
+        </div>
+        <div class="player-drink card">
+          <div class="button">DRINK</div>
+        </div>
+        <div class="player-charm card">
+          <div class="button">USE CHARM</div>
+          <div class="charm-description">Charms afflict your fellow pilgrims with UNPREDICTABLE EFFECTS</div>
+        </div>
       </section>
       <section class="player-score hide" data-view="player-score">
-        <section class="active card host-score" data-view="host-score">
-          <div class="title">ROUND OVER</div>
-        </section>
-        <div class="active subcard player-score">
-          <p>In the cauldron:</p>
-          <div class="icon"><img src="/"/></div>
-          <div class="player-score-delta-a">+0</div>
-          <div class="icon"><img src="/"/></div>
-          <div class="player-score-delta-b">+0</div>
+        <div class="heading card">ROUND OVER</div>
+        <div class="score-breakdown card">
+          <div class="heading">In the cauldron:</div>
+          <div class="objective"><img src="http://lorempixel.com/50/50">+<span class="objective-count">4</span></div>
+          <div class="objective"><img src="http://lorempixel.com/50/50">+<span class="objective-count">2</span></div>
         </div>
-        <div class="active subcard player-score">
-          <p>New score total:</p>
-          <div class="player-score-total">0</div>
+        <div class="score-total card">
+          <div class="heading">New score total:</div>
+          <div class="score">8</div>
         </div>
         <div class="card round-timer">
           <p>NEXT ROUND IN</p>

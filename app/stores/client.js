@@ -30,6 +30,38 @@
       state.room = data.game.name;
       state.roomState = app.constants['CLIENT']['CONNECTION_STATE']['CONNECTED'];
 
+      if (state.clientType === app.constants['CLIENT']['STATE']['HOST']) {
+        if (data.game.state === app.constants['GAME_STATE']['INTRO']) {
+          state.view = 'host-intro';
+        }
+
+        if (data.game.state === app.constants['GAME_STATE']['ROUND']) {
+          state.view = 'host-round';
+        }
+
+        if (data.game.state === app.constants['GAME_STATE']['SCORE']) {
+          state.view = 'host-score';
+        }
+
+        if (data.game.state === app.constants['GAME_STATE']['FINAL_SCORE']) {
+          state.view = 'host-final-score';
+        }
+      }
+
+      if (state.clientType === app.constants['CLIENT']['STATE']['PLAYER']) {
+        if (data.game.state === app.constants['GAME_STATE']['INTRO']) {
+          state.view = 'waiting';
+        }
+
+        if (data.game.state === app.constants['GAME_STATE']['ROUND']) {
+          state.view = 'player-round';
+        }
+
+        if (data.game.state === app.constants['GAME_STATE']['SCORE']) {
+          state.view = 'player-score';
+        }
+      }
+
       client.emit();
     }
 
@@ -39,6 +71,10 @@
       if (data.view === 'hosting') {
         state.clientType = app.constants['CLIENT']['STATE']['HOST'];
         app.actions.createRoom();
+      }
+
+      if (data.view === 'player-config') {
+        state.clientType = app.constants['CLIENT']['STATE']['PLAYER'];
       }
 
       client.emit();

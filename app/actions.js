@@ -37,7 +37,7 @@
       name: playerName
     });
 
-    actions.viewSelect('player-wait');
+    actions.viewSelect('waiting');
   };
 
   actions.startGame = function () {
