@@ -119,6 +119,41 @@
         <div class="card">Waiting for host to start the game...</div>
       </section>
       <section class="player-score hide" data-view="player-score">
+        <section class="active card host-score" data-view="host-score">
+          <div class="title">ROUND OVER</div>
+        </section>
+        <div class="active subcard player-score">
+          <p>In the cauldron:</p>
+          <div class="icon"><img src="/"/></div>
+          <div class="player-score-delta-a">+0</div>
+          <div class="icon"><img src="/"/></div>
+          <div class="player-score-delta-b">+0</div>
+        </div>
+        <div class="active subcard player-score">
+          <p>New score total:</p>
+          <div class="player-score-total">0</div>
+        </div>
+        <div class="card round-timer">
+          <p>NEXT ROUND IN</p>
+          <div class="progress-bar"></div>
+        </div>
+      </section>
+      <section class="victim-score hide" data-view="victim-score">
+        <section class="active card host-score" data-view="host-score">
+          <div class="title">ROUND OVER</div>
+        </section>
+        <div class="active subcard victim-score">
+          <p>You waited too long to drink, and the cauldron exploded on you!</p>
+          <div class="victim-score-status">You were turned into a newt.</div>
+        </div>
+        <div class="active subcard victim-score">
+          <p>Current score:</p>
+          <div class="victim-score-total">0</div>
+        </div>
+        <div class="card round-timer">
+          <p>NEXT ROUND IN</p>
+          <div class="progress-bar"></div>
+        </div>
       </section>
     </section>
   </body>

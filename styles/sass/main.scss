@@ -214,3 +214,18 @@ section.player-config {
     }
   }
 }
+
+section.player-score {
+  .player-score-delta-a {
+    color: $positive-color;
+  }
+  .player-score-delta-b {
+    color: $positive-color;
+  }
+}
+
+section.victim-score {
+  .victim-score-status {
+    color: $negative-color;
+  }
+}
