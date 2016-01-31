@@ -50,6 +50,7 @@ function handleClientMessage(data) {
     socket.gameRoom = room.name;
 
     rooms[socket.gameRoom].intervalId = setInterval(gameUpdate.bind(rooms[socket.gameRoom]), constants['UPDATE_INTERVAL']);
+    console.log('game created', room.name, constants['UPDATE_INTERVAL']);
   }
 
   if (data.type === 'player-join') {
@@ -95,8 +96,8 @@ function createRoom() {
 
   rooms[roomName] = {
     players: [],
-    state: constants['GAME_STATE']['SETUP'],
-    day: 1,
+    state: constants['GAME_STATE']['PLAYER_JOIN'],
+    round: 1,
     dirty: true,
     name: roomName,
   };
@@ -116,7 +117,7 @@ function configurePlayers(roomName) {
 function gameUpdate() {
   var game = this;
 
-  if (game.state === constants['GAME_STATE']['SETUP']) {
+  if (game.state === constants['GAME_STATE']['PLAYER_JOIN']) {
 
   }
 
@@ -131,7 +132,8 @@ function gameUpdate() {
 
   }
 
-  if (game.state === constants['GAME_STATE']['END']) {
+  if (game.state === constants['GAME_STATE']['FINAL_SCORE']) {
+    console.log('game stopped');
     clearInterval(game.intervalId);
     game.dirty = true;
   }
@@ -141,6 +143,7 @@ function gameUpdate() {
       type: 'game',
       game: game
     });
+    console.log('game is in: ' + game.state + ' state');
 
     game.dirty = false;
   }
