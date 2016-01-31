@@ -81,6 +81,18 @@ body {
     border-radius: 4px;
     padding: 15px;
     margin: 15px;
+
+    .objective {
+      margin: 5px;
+      width: 50%;
+    }
+
+    .objective-name {
+      margin-left: 15px;
+      margin-right: 30px;
+      position: relative;
+      top: -16px;
+    }
   }
   .card:hover {
     @include card(1);
@@ -128,6 +140,10 @@ body {
     font-family: $accent-font-family;
     font-weight: 200;
     font-size: 80px;
+  }
+
+  .drink {
+    padding: 100px;
   }
 }
 
