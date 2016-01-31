@@ -95,6 +95,19 @@ body {
     padding: 15px;
     margin: 15px;
     line-height: 30px;
+
+    .positive {
+      color: $positive-color;
+      font-weight: bold;
+    }
+    .negative {
+      color: $negative-color;
+      font-weight: bold;
+    }
+    .charm {
+      color: $charm-color;
+      font-weight: bold;
+    }
   }
   .subcard:hover {
     @include card(1);
