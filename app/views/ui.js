@@ -10,6 +10,7 @@
     $playerCodeInput = $playerConfig.find('input[name="code"]'),
     $playerInfo = $mainContainer.find('.player-info'),
     $hostConfigPlayers = $mainContainer.find('.hosting .players'),
+    $gameStart = $mainContainer.find('.game-start .button'),
     $waitingPlayerPlayers = $mainContainer.find('.waiting-players .players');
 
   ui.gameRender = function (data) {
