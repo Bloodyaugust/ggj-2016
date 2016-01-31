@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var constants = require('./app/constants.js');
+var mustache = require('mustache');
 
 var rooms = {};
 
@@ -98,9 +99,17 @@ function createRoom() {
     players: [],
     state: constants['GAME_STATE']['PLAYER_JOIN'],
     round: 1,
+    roundStart: 0,
+    scoreStart: 0,
     dirty: true,
     name: roomName,
-    objectives: []
+    objectives: [],
+    addedObjectives: [],
+    lastObjectiveAdd: constants['OBJECTIVE_ADD_INTERVAL'],
+    winner: {
+      name: '',
+      score: 0
+    }
   };
 
   console.log('room created: ', roomName);
@@ -150,6 +159,16 @@ function configurePlayers(roomName) {
   game.objectives = objectiveSelection.slice(0);
 }
 
+function generateFortune(name) {
+  return mustache.render('{{name}} will {{a}} {{b}} {{c}} in {{d}}.', {
+    name: name,
+    a: constants['FORTUNE'][0][Math.floor(Math.random() * constants['FORTUNE'][0].length)],
+    b: constants['FORTUNE'][1][Math.floor(Math.random() * constants['FORTUNE'][1].length)],
+    c: constants['FORTUNE'][2][Math.floor(Math.random() * constants['FORTUNE'][2].length)],
+    d: constants['FORTUNE'][3][Math.floor(Math.random() * constants['FORTUNE'][3].length)],
+  });
+}
+
 function gameUpdate() {
   var game = this;
 
@@ -160,17 +179,65 @@ function gameUpdate() {
   if (game.state === constants['GAME_STATE']['INTRO']) {
     if (new Date().valueOf() - game.timeStarted >= constants['INTRO_LENGTH']) {
       game.state = constants['GAME_STATE']['ROUND'];
+      game.roundStart = new Date().valueOf();
       game.dirty = true;
     }
   }
 
   if (game.state === constants['GAME_STATE']['ROUND']) {
+    if (new Date().valueOf() - game.lastObjectiveAdd >= constants['OBJECTIVE_ADD_INTERVAL']) {
+      game.addedObjectives.push(game.objectives[Math.floor(Math.random() * game.objectives.length)]);
+      game.lastObjectiveAdd = new Date().valueOf();
+      game.dirty = true;
+    }
 
+    if (new Date().valueOf() - game.roundStart >= constants['ROUND_LENGTH']) {
+      game.round++;
+
+      if (game.round > constants['ROUNDS_PER_GAME']) {
+        game.state = constants['GAME_STATE']['FINAL_SCORE'];
+      } else {
+        game.state = constants['GAME_STATE']['SCORE'];
+        game.scoreStart = new Date().valueOf();
+      }
+
+      game.dirty = true;
+    }
+  }
+
+  if (game.state === constants['GAME_STATE']['SCORE']) {
+    if (new Date().valueOf() - game.scoreStart >= constants['OBJECTIVE_ADD_INTERVAL']) {
+      game.addedObjectives.push(game.objectives[Math.floor(Math.random() * game.objectives.length)]);
+      game.lastObjectiveAdd = new Date().valueOf();
+      game.dirty = true;
+    }
+
+    if (new Date().valueOf() - game.roundStart >= constants['SCORE_LENGTH']) {
+      game.state = constants['GAME_STATE']['ROUND'];
+      game.dirty = true;
+    }
   }
 
   if (game.state === constants['GAME_STATE']['FINAL_SCORE']) {
+    var highScore = game.players[0].score;
+    var highScoreIndex = 0;
+
     console.log('game stopped');
     clearInterval(game.intervalId);
+
+    for (var i = 1; i < game.players.length; i++) {
+      if (game.players[i].score > highScore) {
+        highScore = game.players[i].score;
+        highScoreIndex = i;
+      }
+    }
+
+    game.winner = {
+      name: game.players[highScoreIndex].name,
+      score: highScore,
+      fortune: generateFortune(game.players[highScoreIndex].name)
+    };
+
     game.dirty = true;
   }
 

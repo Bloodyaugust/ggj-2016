@@ -60,8 +60,26 @@
       shape: 'cretin'
     }
     ],
+    'SCORE_STATUS': [
+      'turned into a newt',
+    ],
+    'FORTUNE': [
+      [
+      'definitely',
+      ],
+      [
+      'definitely',
+      ],
+      [
+      'definitely',
+      ],
+      [
+      'definitely',
+      ],
+    ],
     'INTRO_LENGTH': 15 * 1000,
     'OBJECTIVE_SELECTION': 4,
+    'OBJECTIVE_ADD_INTERVAL': 1,
     'SCORE_LENGTH': 10 * 1000,
     'ROUND_LENGTH': 30 * 1000,
     'ROUNDS_PER_GAME': 5,
