@@ -1,0 +1,20 @@
+{
+	"folders":
+	[
+		{
+			"file_include_patterns":
+			[
+				"*.js",
+				"*.json",
+				"*.md",
+				"*.html",
+				"*.scss",
+				"*.rb",
+				"*.yml"
+			],
+		},
+		{
+			"path": "."
+		}
+	]
+}
