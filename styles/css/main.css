@@ -44,79 +44,168 @@ table {
   border-spacing: 0;
 }
 
-/* line 12, ../sass/main.scss */
+/* line 23, ../sass/main.scss */
 body {
-  background-color: #303030;
+  background: -webkit-linear-gradient(#303030, #000000);
+  background-attachment: fixed;
   color: white;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+  font-size: 20px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   width: 100%;
+  height: 100%;
 }
-/* line 21, ../sass/main.scss */
+/* line 37, ../sass/main.scss */
 body .button {
-  background-color: #D32F2F;
+  background-color: #90b562;
   border-radius: 4px;
   cursor: pointer;
-  height: 40px;
-  line-height: 40px;
-  margin: 15px auto;
-  max-width: 150px;
+  margin: 15px;
+  padding: 15px;
   text-align: center;
+  color: #000000;
+  font-family: "Amatic SC", cursive;
+  font-size: 60px;
+  line-height: 80px;
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
 }
-/* line 32, ../sass/main.scss */
+/* line 50, ../sass/main.scss */
 body .button:active {
-  background-color: #B71C1C;
+  background-color: #cbff8a;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
-/* line 36, ../sass/main.scss */
+/* line 54, ../sass/main.scss */
 body .button.disabled {
   background-color: #212121;
 }
-/* line 40, ../sass/main.scss */
+/* line 58, ../sass/main.scss */
+body .button-alt {
+  background-color: #ffe050;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 15px;
+  padding: 15px;
+  text-align: center;
+  color: #000000;
+  font-family: "Amatic SC", cursive;
+  font-size: 60px;
+  line-height: 80px;
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+/* line 71, ../sass/main.scss */
+body .button-alt:active {
+  background-color: #fff3b9;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+}
+/* line 75, ../sass/main.scss */
+body .button-alt.disabled {
+  background-color: #212121;
+}
+/* line 79, ../sass/main.scss */
 body .card {
-  background-color: #424242;
+  background-color: #6a4e5e;
   border-radius: 4px;
   padding: 15px;
   margin: 15px;
 }
-/* line 46, ../sass/main.scss */
+/* line 85, ../sass/main.scss */
+body .card .objective {
+  margin: 5px;
+  width: 50%;
+}
+/* line 90, ../sass/main.scss */
+body .card .objective-name {
+  margin-left: 15px;
+  margin-right: 30px;
+  position: relative;
+  top: -16px;
+}
+/* line 97, ../sass/main.scss */
+body .card .objective-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 25px;
+  line-height: 40px;
+  font-style: bold;
+}
+/* line 104, ../sass/main.scss */
 body .card:hover {
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
 }
-/* line 49, ../sass/main.scss */
+/* line 107, ../sass/main.scss */
 body .card.active {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
-/* line 53, ../sass/main.scss */
+/* line 111, ../sass/main.scss */
+body .subcard {
+  background-color: #332b30;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 15px;
+  line-height: 30px;
+}
+/* line 118, ../sass/main.scss */
+body .subcard .positive {
+  color: #90b562;
+  font-weight: bold;
+}
+/* line 122, ../sass/main.scss */
+body .subcard .negative {
+  color: #914747;
+  font-weight: bold;
+}
+/* line 126, ../sass/main.scss */
+body .subcard .charm {
+  color: #ffe050;
+  font-weight: bold;
+}
+/* line 131, ../sass/main.scss */
+body .subcard:hover {
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+/* line 134, ../sass/main.scss */
+body .subcard.active {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+}
+/* line 138, ../sass/main.scss */
 body .hide {
   display: none;
 }
-/* line 57, ../sass/main.scss */
+/* line 142, ../sass/main.scss */
 body .player.dead {
-  color: #D32F2F;
+  color: #90b562;
+}
+/* line 146, ../sass/main.scss */
+body .title {
+  font-family: "Amatic SC", cursive;
+  font-weight: 200;
+  font-size: 80px;
+}
+/* line 152, ../sass/main.scss */
+body .drink {
+  padding: 100px;
 }
 
-/* line 62, ../sass/main.scss */
+/* line 157, ../sass/main.scss */
 header {
   background-color: #212121;
   color: white;
-  font-size: 2rem;
   height: 50px;
   line-height: 50px;
   padding: 0 10%;
   text-align: left;
 }
-/* line 71, ../sass/main.scss */
+/* line 165, ../sass/main.scss */
 header nav {
   float: right;
   width: 25%;
 }
-/* line 75, ../sass/main.scss */
+/* line 169, ../sass/main.scss */
 header nav .icon {
-  background-color: #424242;
+  background-color: #6a4e5e;
   border-radius: 16px;
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
   cursor: pointer;
@@ -125,85 +214,105 @@ header nav .icon {
   margin-left: 16px;
   margin-top: 8px;
 }
-/* line 85, ../sass/main.scss */
+/* line 179, ../sass/main.scss */
 header nav .icon:active {
   border: solid white 2px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
-/* line 89, ../sass/main.scss */
+/* line 183, ../sass/main.scss */
 header nav .icon.active {
   border: solid white 2px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
 }
 
-/* line 96, ../sass/main.scss */
+/* line 190, ../sass/main.scss */
 input {
-  background-color: #424242;
+  background-color: white;
   border: none;
-  color: white;
+  color: black;
   height: 30px;
-  margin: 15px;
-  width: calc(100% - 30px);
+  margin: 15px auto;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
 }
 
-/* line 104, ../sass/main.scss */
+/* line 201, ../sass/main.scss */
 input:focus {
   border-bottom: solid white 1px;
   outline: 0;
 }
 
-/* line 108, ../sass/main.scss */
+/* line 205, ../sass/main.scss */
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: white;
 }
 
-/* line 111, ../sass/main.scss */
+/* line 208, ../sass/main.scss */
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: white;
   opacity: 1;
 }
 
-/* line 115, ../sass/main.scss */
+/* line 212, ../sass/main.scss */
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: white;
   opacity: 1;
 }
 
-/* line 119, ../sass/main.scss */
+/* line 216, ../sass/main.scss */
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: white;
 }
 
-/* line 123, ../sass/main.scss */
+/* line 220, ../sass/main.scss */
 section.main-content {
   width: 80%;
   margin: 0 10%;
   text-align: center;
 }
-/* line 128, ../sass/main.scss */
+/* line 225, ../sass/main.scss */
 section.main-content .icon {
   height: 32px;
   margin-bottom: -8px;
   width: 32px;
 }
 
-/* line 136, ../sass/main.scss */
+/* line 233, ../sass/main.scss */
 section.hosting .room-name {
-  color: #D32F2F;
+  color: #ffe050;
   display: block;
-  font-size: 4rem;
+  font-size: 60px;
+  line-height: 80px;
 }
 
-/* line 144, ../sass/main.scss */
+/* line 242, ../sass/main.scss */
 section.player-config .player-data {
-  margin: 15px auto;
-  max-width: 300px;
+  text-align: left;
+  font-size: 24px;
+  margin: 15px;
+  padding: 15px;
 }
-/* line 148, ../sass/main.scss */
+/* line 248, ../sass/main.scss */
 section.player-config .player-data .lower {
   text-transform: lowercase;
+}
+
+/* line 255, ../sass/main.scss */
+section.player-score .player-score-delta-a {
+  color: #90b562;
+}
+/* line 258, ../sass/main.scss */
+section.player-score .player-score-delta-b {
+  color: #90b562;
+}
+
+/* line 264, ../sass/main.scss */
+section.victim-score .victim-score-status {
+  color: #914747;
 }
