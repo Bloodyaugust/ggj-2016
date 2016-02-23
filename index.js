@@ -51,7 +51,7 @@ function handleClientMessage(data) {
     socket.gameRoom = room.name;
 
     rooms[socket.gameRoom].intervalId = setInterval(gameUpdate.bind(rooms[socket.gameRoom]), constants['UPDATE_INTERVAL']);
-    console.log('game created', room.name, constants['UPDATE_INTERVAL']);
+    console.log('game created', room.name);
   }
 
   if (data.type === 'player-join') {
@@ -206,14 +206,9 @@ function gameUpdate() {
   }
 
   if (game.state === constants['GAME_STATE']['SCORE']) {
-    if (new Date().valueOf() - game.scoreStart >= constants['OBJECTIVE_ADD_INTERVAL']) {
-      game.addedObjectives.push(game.objectives[Math.floor(Math.random() * game.objectives.length)]);
-      game.lastObjectiveAdd = new Date().valueOf();
-      game.dirty = true;
-    }
-
-    if (new Date().valueOf() - game.roundStart >= constants['SCORE_LENGTH']) {
+    if (new Date().valueOf() - game.scoreStart >= constants['SCORE_LENGTH']) {
       game.state = constants['GAME_STATE']['ROUND'];
+      game.roundStart = new Date().valueOf();
       game.dirty = true;
     }
   }
@@ -246,7 +241,7 @@ function gameUpdate() {
       type: 'game',
       game: game
     });
-    console.log('game is in: ' + game.state + ' state');
+    //console.log('game is in: ' + game.state + ' state at ' + game.round + ' round');
 
     game.dirty = false;
   }

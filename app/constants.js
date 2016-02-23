@@ -21,124 +21,124 @@
     },
     'OBJECTIVES': [
     {
-      name: 'Tiger Entrails',
-      color: 'red',
-      shape: 'tangle'
-      filename: 'TigerEntrails.png'
-    }
+      'name': 'Tiger Entrails',
+      'color': 'red',
+      'shape': 'tangle',
+      'filename': 'TigerEntrails.png'
+    },
     {
-      name: 'Adder Fork',
-      color: 'red',
-      shape: 'branch'
-      filename: 'AdderFork.png'
-    }
+      'name': 'Adder Fork',
+      'color': 'red',
+      'shape': 'branch',
+      'filename': 'AdderFork.png'
+    },
     {
-      name: 'Goat Gall',
-      color: 'red',
-      shape: 'sphere'
-      filename: 'GoatGall.png'
-    }
+      'name': 'Goat Gall',
+      'color': 'red',
+      'shape': 'sphere',
+      'filename': 'GoatGall.png'
+    },
     {
-      name: 'Baby Finger',
-      color: 'red',
-      shape: 'straight'
-      filename: 'BabyFinger.png'
-    }
+      'name': 'Baby Finger',
+      'color': 'red',
+      'shape': 'straight',
+      'filename': 'BabyFinger.png'
+    },
     {
-      name: 'Baboon Blood',
-      color: 'red',
-      shape: 'vial'
-      filename: 'BaboonBlood.png'
-    }
+      'name': 'Baboon Blood',
+      'color': 'red',
+      'shape': 'vial',
+      'filename': 'BaboonBlood.png'
+    },
     {
-      name: 'Poisoned Entrails',
-      color: 'green',
-      shape: 'tangle'
-      filename: 'PoisonEntrails.png'
-    }
+      'name': 'Poisoned Entrails',
+      'color': 'green',
+      'shape': 'tangle',
+      'filename': 'PoisonEntrails.png'
+    },
     {
-      name: 'Lizard Leg',
-      color: 'green',
-      shape: 'branch'
-      filename: 'LizardLeg.png'
-    }
+      'name': 'Lizard Leg',
+      'color': 'green',
+      'shape': 'branch',
+      'filename': 'LizardLeg.png'
+    },
     {
-      name: 'Drop of Mucus',
-      color: 'green',
-      shape: 'sphere'
-      filename: 'DropOfMucus.png'
-    }
+      'name': 'Drop of Mucus',
+      'color': 'green',
+      'shape': 'sphere',
+      'filename': 'DropOfMucus.png'
+    },
     {
-      name: 'Frog Toe',
-      color: 'green',
-      shape: 'straight'
-      filename: 'FrogToe.png'
-    }
+      'name': 'Frog Toe',
+      'color': 'green',
+      'shape': 'straight',
+      'filename': 'FrogToe.png'
+    },
     {
-      name: 'Toad Venom',
-      color: 'green',
-      shape: 'vial'
-      filename: 'ToadVenom.png'
-    }
+      'name': 'Toad Venom',
+      'color': 'green',
+      'shape': 'vial',
+      'filename': 'ToadVenom.png'
+    },
     {
-      name: 'Snake Fillet',
-      color: 'brown',
-      shape: 'tangle'
-      filename: 'SnakeFillet.png'
-    }
+      'name': 'Snake Fillet',
+      'color': 'brown',
+      'shape': 'tangle',
+      'filename': 'SnakeFillet.png'
+    },
     {
-      name: 'Hemlock Root',
-      color: 'brown',
-      shape: 'branch'
-      filename: 'HemlockRoot.png'
-    }
+      'name': 'Hemlock Root',
+      'color': 'brown',
+      'shape': 'branch',
+      'filename': 'HemlockRoot.png'
+    },
     {
-      name: 'Bat Wool',
-      color: 'brown',
-      shape: 'sphere'
-      filename: 'BatsWool.png'
-    }
+      'name': 'Bat Wool',
+      'color': 'brown',
+      'shape': 'sphere',
+      'filename': 'BatsWool.png'
+    },
     {
-      name: 'Wolf Tooth',
-      color: 'brown',
-      shape: 'straight'
-      filename: 'WolfsTooth.png'
-    }
+      'name': 'Wolf Tooth',
+      'color': 'brown',
+      'shape': 'straight',
+      'filename': 'WolfsTooth.png'
+    },
     {
-      name: 'Sands of Time',
-      color: 'brown',
-      shape: 'vial'
-      filename: 'SandsOfTime.png'
-    }
+      'name': 'Sands of Time',
+      'color': 'brown',
+      'shape': 'vial',
+      'filename': 'SandsOfTime.png'
+    },
     {
-      name: 'Spider Silk',
-      color: 'white',
-      shape: 'tangle'
-      filename: 'SpiderWeb.png'
-    }
+      'name': 'Spider Silk',
+      'color': 'white',
+      'shape': 'tangle',
+      'filename': 'SpiderWeb.png'
+    },
     {
-      name: 'Silvered Yew',
-      color: 'white',
-      shape: 'branch'
-      filename: 'SilveredYew.png'
-    }
+      'name': 'Silvered Yew',
+      'color': 'white',
+      'shape': 'branch',
+      'filename': 'SilveredYew.png'
+    },
     {
-      name: 'Eye of Newt',
-      color: 'white',
-      shape: 'sphere'
-      filename: 'EyeOfNewt.png'
-    }
+      'name': 'Eye of Newt',
+      'color': 'white',
+      'shape': 'sphere',
+      'filename': 'EyeOfNewt.png'
+    },
     {
-      name: 'Dragon Scale',
-      color: 'white',
-      shape: 'straight'
-      filename: 'DragonScale.png'
-    }
+      'name': 'Dragon Scale',
+      'color': 'white',
+      'shape': 'straight',
+      'filename': 'DragonScale.png'
+    },
     {
-      name: 'Bone Dust',
-      color: 'white',
-      shape: 'vial'
-      filename: 'BoneDust.png'
+      'name': 'Bone Dust',
+      'color': 'white',
+      'shape': 'vial',
+      'filename': 'BoneDust.png'
     }
     ],
     'SCORE_STATUS': [
@@ -203,10 +203,10 @@
     'a taxi',
     'a fever dream'
     ],
-    ]
+  ],
     'INTRO_LENGTH': 15 * 1000,
     'OBJECTIVE_SELECTION': 4,
-    'OBJECTIVE_ADD_INTERVAL': 1,
+    'OBJECTIVE_ADD_INTERVAL': 1000,
     'SCORE_LENGTH': 10 * 1000,
     'ROUND_LENGTH': 30 * 1000,
     'ROUNDS_PER_GAME': 5,
