@@ -105,7 +105,9 @@ function createRoom() {
     name: roomName,
     objectives: [],
     addedObjectives: [],
+    addedObjectivesCount: [],
     lastObjectiveAdd: constants['OBJECTIVE_ADD_INTERVAL'],
+    leadPlayer: 0,
     winner: {
       name: '',
       score: 0
@@ -199,6 +201,24 @@ function gameUpdate() {
       } else {
         game.state = constants['GAME_STATE']['SCORE'];
         game.scoreStart = new Date().valueOf();
+
+        game.addedObjectivesCount = [];
+        for (var i = 0; i < game.addedObjectives.length; i++) {
+          if (game.addedObjectivesCount[game.addedObjectives[i]]) {
+            game.addedObjectivesCount[game.addedObjectives[i]]++;
+          } else {
+            game.addedObjectivesCount[game.addedObjectives[i]] = 1;
+          }
+        }
+
+        game.addedObjectives = [];
+
+        game.leadPlayer = 0;
+        for (i = 0; i < game.players.length; i++) {
+          if (game.players[i].score > game.players[game.leadPlayer].score) {
+            game.leadPlayer = i;
+          }
+        }
       }
 
       game.dirty = true;

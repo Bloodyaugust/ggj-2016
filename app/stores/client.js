@@ -5,11 +5,15 @@
     room: '',
     clientName: '',
     clientType: app.constants['CLIENT']['STATE']['NONE'],
+    objectives: [],
+    score: 0,
     view: 'make-connection'
   },
   listeners = [];
 
   client.update = function (data) {
+    var playerObject = {};
+
     if (data.type === 'client-connect') {
       state.roomState = app.constants['CLIENT']['CONNECTION_STATE']['CONNECTED'];
       client.emit();
@@ -55,6 +59,16 @@
 
         if (data.game.state === app.constants['GAME_STATE']['ROUND']) {
           state.view = 'player-round';
+
+          for (var i = 0; i < data.game.players.length; i++) {
+            if (state.clientName === data.game.players[i].name) {
+              playerObject = data.game.players[i];
+              break;
+            }
+          }
+
+          state.objectives = playerObject.objectives;
+          state.score = playerObject.score;
         }
 
         if (data.game.state === app.constants['GAME_STATE']['SCORE']) {

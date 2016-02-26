@@ -5,14 +5,26 @@
     $findingRoom = $mainContainer.find('.finding-room'),
     $roomNameContainer = $mainContainer.find('.subcard.room'),
     $roomName = $mainContainer.find('.subcard.room .room-name'),
+    $leader = $mainContainer.find('.subcard.leader'),
+    $leadPlayer = $leader.find('.lead-player'),
+    $leadScore = $leader.find('.lead-score'),
     $playerConfig = $mainContainer.find('.player-config'),
     $playerNameInput = $playerConfig.find('input[name="name"]'),
     $playerCodeInput = $playerConfig.find('input[name="code"]'),
     $playerInfo = $mainContainer.find('.player-info'),
+    $playerName = $mainContainer.find('.player'),
+    $playerObjectives = $mainContainer.find('.player-objectives'),
+    $playerScore = $mainContainer.find('.player-score .score'),
+    $playAgain = $mainContainer.find('.button.play-again'),
+    $scoreBreakdown = $mainContainer.find('.score-breakdown'),
     $hostConfigPlayers = $mainContainer.find('.hosting .players'),
     $hostConfigPlayerCount = $hostConfigPlayers.find('.player-count'),
     $gameStart = $mainContainer.find('.game-start .button'),
     $viewSelect = $mainContainer.find('.view-select'),
+    $winner = $mainContainer.find('.subcard.winner'),
+    $winningFortune = $mainContainer.find('.subcard.fortune'),
+    $winningPlayer = $winner.find('.winning-player'),
+    $winningScore = $winner.find('.winning-score'),
     $waitingPlayerPlayers = $mainContainer.find('.waiting-players .players');
 
   ui.gameRender = function (data) {
@@ -41,6 +53,43 @@
         $hostConfigPlayerCount.html(data.game.players.length);
       }
     }
+
+    if (data.clientType === app.constants['CLIENT']['STATE']['HOST']) {
+      if (data.view === 'host-score') {
+        $leadPlayer.html(data.game.players[data.game.leadPlayer].name);
+        $leadScore.html(data.game.players[data.game.leadPlayer].score);
+      }
+
+      if (data.view === 'host-final-score') {
+        $winningFortune.html(Mustache.render('<p>{{fortune}}</p>', data.game.winner));
+        $winningPlayer.html(data.game.winner.name);
+        $winningScore.html(data.game.winner.score);
+      }
+    }
+
+    if (data.clientType === app.constants['CLIENT']['STATE']['PLAYER']) {
+      $playerName.html(data.clientName);
+
+      if (data.view === 'player-round') {
+        $mainContainer.find('.objective').remove();
+
+        for (var i = 0; i < data.objectives.length; i++) {
+          $playerObjectives.append(Mustache.render('<span class="objective"><img src="img/{{filename}}"><span class="objective-name">{{name}}</span></span>', app.constants['OBJECTIVES'][data.objectives[i]]));
+        }
+      }
+
+      if (data.view === 'player-score') {
+        $playerScore.html(data.score);
+
+        $scoreBreakdown.find('.objective').remove();
+        for (i = 0; i < data.objectives.length; i++) {
+          $scoreBreakdown.append(Mustache.render('<div class="objective"><img src="img/{{filename}}"><span class="objective-count">{{count}}</span></div>', {
+            filename: app.constants['OBJECTIVES'][data.objectives[i]].filename,
+            count: data.game.addedObjectivesCount[data.objectives[i]] || 0
+          }));
+        }
+      }
+    }
   };
 
   $playerConfig.find('.button').on('click', function (e) {
@@ -48,6 +97,10 @@
   });
   $playerConfig.find('input[name="name"]').enterKey(function (e) {
     app.actions.playerJoin($playerCodeInput.val(), $playerNameInput.val());
+  });
+
+  $playAgain.on('click', function (e) {
+    window.location.reload();
   });
 
   $gameStart.on('click', function (e) {
