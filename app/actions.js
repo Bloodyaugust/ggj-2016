@@ -27,7 +27,8 @@
         name: playerName,
         score: 0,
         objectives: [],
-        charm: {}
+        charm: {},
+        hasDrunk: false
       },
       room: room.toLowerCase(),
       remote: true,
@@ -39,6 +40,14 @@
     });
 
     actions.viewSelect('waiting');
+  };
+
+  actions.playerDrink = function (name) {
+    app.dispatcher.dispatch({
+      type: 'player-drink',
+      name: name,
+      remote: true
+    });
   };
 
   actions.startGame = function () {

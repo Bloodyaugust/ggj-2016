@@ -60,6 +60,12 @@ function handleClientMessage(data) {
     handlePlayerJoin(data);
   }
 
+  if (data.type === 'player-drink') {
+    data.gameRoom = socket.gameRoom;
+    console.log('handling player drink');
+    handlePlayerDrink(data);
+  }
+
   if (data.type === 'game-start') {
     handleGameStart(socket.gameRoom);
   }
@@ -70,6 +76,29 @@ function handlePlayerJoin(data) {
   rooms[data.room].dirty = true;
 
   console.log('player joined: ' + data.player.name + ' ' + data.room);
+}
+
+function handlePlayerDrink(data) {
+  var game = rooms[data.gameRoom];
+
+  console.log('looking for drinking player ' + data.name);
+  for (var i = 0; i < game.players.length; i++) {
+    if (game.players[i].name === data.name && !game.players[i].hasDrunk) {
+      console.log('drinking player found ' + game.players[i].name);
+      game.players[i].hasDrunk = true;
+
+      for (var i2 = 0; i2 < game.addedObjectives.length; i2++) {
+        if (game.addedObjectives[i2] === game.players[i].objectives[0] ||
+            game.addedObjectives[i2] === game.players[i].objectives[1]) {
+          game.players[i].score++;
+        }
+      }
+
+      console.log(game.players[i] + ' just drank and their score is now ' + game.players[i].score);
+      game.isDirty = true;
+      break;
+    }
+  }
 }
 
 function handleGameStart(gameRoom) {
@@ -218,6 +247,8 @@ function gameUpdate() {
           if (game.players[i].score > game.players[game.leadPlayer].score) {
             game.leadPlayer = i;
           }
+
+          game.players[i].hasDrunk = false;
         }
       }
 

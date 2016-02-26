@@ -67,6 +67,7 @@
             }
           }
 
+          state.hasDrunk = playerObject.hasDrunk;
           state.objectives = playerObject.objectives;
           state.score = playerObject.score;
         }

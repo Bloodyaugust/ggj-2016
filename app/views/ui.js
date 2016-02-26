@@ -2,6 +2,7 @@
   var $body = $('body'),
     $mainContainer = $body.find('.main-content'),
     $currentObjective = $mainContainer.find('.current-objective-wrapper img'),
+    $drink = $mainContainer.find('.button.drink'),
     $views = $mainContainer.children('section'),
     $findingRoom = $mainContainer.find('.finding-room'),
     $roomNameContainer = $mainContainer.find('.subcard.room'),
@@ -81,6 +82,12 @@
         for (var i = 0; i < data.objectives.length; i++) {
           $playerObjectives.append(Mustache.render('<span class="objective"><img src="img/{{filename}}"><span class="objective-name">{{name}}</span></span>', app.constants['OBJECTIVES'][data.objectives[i]]));
         }
+
+        if (data.hasDrunk) {
+          $drink.addClass('disabled');
+        } else {
+          $drink.removeClass('disabled');
+        }
       }
 
       if (data.view === 'player-score') {
@@ -96,6 +103,12 @@
       }
     }
   };
+
+  $drink.on('click', function (e) {
+    if (!$drink.hasClass('disabled')) {
+      app.actions.playerDrink(app.stores.client.getState().clientName);
+    }
+  });
 
   $playerConfig.find('.button').on('click', function (e) {
     app.actions.playerJoin($playerCodeInput.val(), $playerNameInput.val());
