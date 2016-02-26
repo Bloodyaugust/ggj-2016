@@ -1,6 +1,7 @@
 (function (ui) {
   var $body = $('body'),
     $mainContainer = $body.find('.main-content'),
+    $currentObjective = $mainContainer.find('.current-objective-wrapper img'),
     $views = $mainContainer.children('section'),
     $findingRoom = $mainContainer.find('.finding-room'),
     $roomNameContainer = $mainContainer.find('.subcard.room'),
@@ -55,6 +56,10 @@
     }
 
     if (data.clientType === app.constants['CLIENT']['STATE']['HOST']) {
+      if (data.view === 'host-round') {
+        $currentObjective.attr('src', Mustache.render('img/{{filename}}', app.constants['OBJECTIVES'][data.game.addedObjectives[data.game.addedObjectives.length - 1]]));
+      }
+
       if (data.view === 'host-score') {
         $leadPlayer.html(data.game.players[data.game.leadPlayer].name);
         $leadScore.html(data.game.players[data.game.leadPlayer].score);
