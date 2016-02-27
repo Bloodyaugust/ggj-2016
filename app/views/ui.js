@@ -58,7 +58,11 @@
 
     if (data.clientType === app.constants['CLIENT']['STATE']['HOST']) {
       if (data.view === 'host-round') {
-        $currentObjective.attr('src', Mustache.render('img/{{filename}}', app.constants['OBJECTIVES'][data.game.addedObjectives[data.game.addedObjectives.length - 1]]));
+        if (data.game.addedObjectives.length) {
+          $currentObjective.attr('src', Mustache.render('img/{{filename}}', app.constants['OBJECTIVES'][data.game.addedObjectives[data.game.addedObjectives.length - 1]]));
+        } else {
+          $currentObjective.attr('src', '');
+        }
       }
 
       if (data.view === 'host-score') {
@@ -107,6 +111,7 @@
   $drink.on('click', function (e) {
     if (!$drink.hasClass('disabled')) {
       app.actions.playerDrink(app.stores.client.getState().clientName);
+      $drink.addClass('disabled');
     }
   });
 

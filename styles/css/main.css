@@ -114,32 +114,41 @@ body .card {
 }
 /* line 85, ../sass/main.scss */
 body .card .objective {
-  margin: 5px;
+  margin: 5px auto;
   width: 50%;
 }
-/* line 90, ../sass/main.scss */
+/* line 89, ../sass/main.scss */
+body .card .objective img {
+  width: 100%;
+}
+/* line 94, ../sass/main.scss */
+body .card .objective-count {
+  display: block;
+  margin: 10px auto;
+}
+/* line 99, ../sass/main.scss */
 body .card .objective-name {
   margin-left: 15px;
   margin-right: 30px;
   position: relative;
   top: -16px;
 }
-/* line 97, ../sass/main.scss */
+/* line 106, ../sass/main.scss */
 body .card .objective-title {
   font-family: "Open Sans", sans-serif;
   font-size: 25px;
   line-height: 40px;
   font-style: bold;
 }
-/* line 104, ../sass/main.scss */
+/* line 113, ../sass/main.scss */
 body .card:hover {
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
 }
-/* line 107, ../sass/main.scss */
+/* line 116, ../sass/main.scss */
 body .card.active {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
-/* line 111, ../sass/main.scss */
+/* line 120, ../sass/main.scss */
 body .subcard {
   background-color: #332b30;
   border-radius: 4px;
@@ -147,49 +156,50 @@ body .subcard {
   margin: 15px;
   line-height: 30px;
 }
-/* line 118, ../sass/main.scss */
+/* line 127, ../sass/main.scss */
 body .subcard .positive {
   color: #90b562;
   font-weight: bold;
 }
-/* line 122, ../sass/main.scss */
+/* line 131, ../sass/main.scss */
 body .subcard .negative {
   color: #914747;
   font-weight: bold;
 }
-/* line 126, ../sass/main.scss */
+/* line 135, ../sass/main.scss */
 body .subcard .charm {
   color: #ffe050;
   font-weight: bold;
 }
-/* line 131, ../sass/main.scss */
+/* line 140, ../sass/main.scss */
 body .subcard:hover {
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
 }
-/* line 134, ../sass/main.scss */
+/* line 143, ../sass/main.scss */
 body .subcard.active {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
-/* line 138, ../sass/main.scss */
+/* line 147, ../sass/main.scss */
 body .hide {
   display: none;
 }
-/* line 142, ../sass/main.scss */
+/* line 151, ../sass/main.scss */
 body .player.dead {
   color: #90b562;
 }
-/* line 146, ../sass/main.scss */
+/* line 155, ../sass/main.scss */
 body .title {
   font-family: "Amatic SC", cursive;
   font-weight: 200;
   font-size: 80px;
 }
-/* line 152, ../sass/main.scss */
+/* line 161, ../sass/main.scss */
 body .drink {
-  padding: 100px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-/* line 157, ../sass/main.scss */
+/* line 167, ../sass/main.scss */
 header {
   background-color: #212121;
   color: white;
@@ -198,12 +208,12 @@ header {
   padding: 0 10%;
   text-align: left;
 }
-/* line 165, ../sass/main.scss */
+/* line 175, ../sass/main.scss */
 header nav {
   float: right;
   width: 25%;
 }
-/* line 169, ../sass/main.scss */
+/* line 179, ../sass/main.scss */
 header nav .icon {
   background-color: #6a4e5e;
   border-radius: 16px;
@@ -214,18 +224,18 @@ header nav .icon {
   margin-left: 16px;
   margin-top: 8px;
 }
-/* line 179, ../sass/main.scss */
+/* line 189, ../sass/main.scss */
 header nav .icon:active {
   border: solid white 2px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
-/* line 183, ../sass/main.scss */
+/* line 193, ../sass/main.scss */
 header nav .icon.active {
   border: solid white 2px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
 }
 
-/* line 190, ../sass/main.scss */
+/* line 200, ../sass/main.scss */
 input {
   background-color: white;
   border: none;
@@ -238,52 +248,52 @@ input {
   line-height: 30px;
 }
 
-/* line 201, ../sass/main.scss */
+/* line 211, ../sass/main.scss */
 input:focus {
   border-bottom: solid white 1px;
   outline: 0;
 }
 
-/* line 205, ../sass/main.scss */
+/* line 215, ../sass/main.scss */
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: white;
 }
 
-/* line 208, ../sass/main.scss */
+/* line 218, ../sass/main.scss */
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: white;
   opacity: 1;
 }
 
-/* line 212, ../sass/main.scss */
+/* line 222, ../sass/main.scss */
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: white;
   opacity: 1;
 }
 
-/* line 216, ../sass/main.scss */
+/* line 226, ../sass/main.scss */
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: white;
 }
 
-/* line 220, ../sass/main.scss */
+/* line 230, ../sass/main.scss */
 section.main-content {
   width: 80%;
   margin: 0 10%;
   text-align: center;
 }
-/* line 225, ../sass/main.scss */
+/* line 235, ../sass/main.scss */
 section.main-content .icon {
   height: 32px;
   margin-bottom: -8px;
   width: 32px;
 }
 
-/* line 233, ../sass/main.scss */
+/* line 243, ../sass/main.scss */
 section.hosting .room-name {
   color: #ffe050;
   display: block;
@@ -291,28 +301,45 @@ section.hosting .room-name {
   line-height: 80px;
 }
 
-/* line 242, ../sass/main.scss */
+/* line 252, ../sass/main.scss */
 section.player-config .player-data {
   text-align: left;
   font-size: 24px;
   margin: 15px;
   padding: 15px;
 }
-/* line 248, ../sass/main.scss */
+/* line 258, ../sass/main.scss */
 section.player-config .player-data .lower {
   text-transform: lowercase;
 }
 
-/* line 255, ../sass/main.scss */
+/* line 265, ../sass/main.scss */
 section.player-score .player-score-delta-a {
   color: #90b562;
 }
-/* line 258, ../sass/main.scss */
+/* line 268, ../sass/main.scss */
 section.player-score .player-score-delta-b {
   color: #90b562;
 }
 
-/* line 264, ../sass/main.scss */
+/* line 273, ../sass/main.scss */
+section.player-round {
+  max-height: 100vh;
+}
+/* line 276, ../sass/main.scss */
+section.player-round .player-objectives {
+  height: 80vh;
+}
+/* line 279, ../sass/main.scss */
+section.player-round .player-objectives .objective {
+  height: 45%;
+}
+/* line 282, ../sass/main.scss */
+section.player-round .player-objectives .objective img {
+  height: 40%;
+}
+
+/* line 290, ../sass/main.scss */
 section.victim-score .victim-score-status {
   color: #914747;
 }

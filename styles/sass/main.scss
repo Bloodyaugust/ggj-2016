@@ -83,8 +83,17 @@ body {
     margin: 15px;
 
     .objective {
-      margin: 5px;
+      margin: 5px auto;
       width: 50%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .objective-count {
+      display: block;
+      margin: 10px auto;
     }
 
     .objective-name {
@@ -150,7 +159,8 @@ body {
   }
 
   .drink {
-    padding: 100px;
+    margin: 0 auto;
+    text-align: center;
   }
 }
 
@@ -257,6 +267,22 @@ section.player-score {
   }
   .player-score-delta-b {
     color: $positive-color;
+  }
+}
+
+section.player-round {
+  max-height: 100vh;
+
+  .player-objectives {
+    height: 80vh;
+
+    .objective {
+      height: 45%;
+
+      img {
+        height: 40%;
+      }
+    }
   }
 }
 

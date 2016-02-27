@@ -111,12 +111,6 @@
       'filename': 'SandsOfTime.png'
     },
     {
-      'name': 'Spider Silk',
-      'color': 'white',
-      'shape': 'tangle',
-      'filename': 'SpiderWeb.png'
-    },
-    {
       'name': 'Silvered Yew',
       'color': 'white',
       'shape': 'branch',
@@ -208,7 +202,8 @@
     'OBJECTIVE_SELECTION': 4,
     'OBJECTIVE_ADD_INTERVAL': 1000,
     'SCORE_LENGTH': 10 * 1000,
-    'ROUND_LENGTH': 30 * 1000,
+    'ROUND_LENGTH_TARGET': 30 * 1000,
+    'ROUND_LENGTH_MINIMUM': 10 * 1000,
     'ROUNDS_PER_GAME': 5,
     'UPDATE_INTERVAL': 16,
   };

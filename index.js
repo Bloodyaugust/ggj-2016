@@ -175,11 +175,11 @@ function configurePlayers(roomName) {
   }
 
   for (i = 0; i < players.length; i++) {
-    firstObjective = Math.floor(Math.random() * objectiveSelection.length);
-    secondObjective = Math.floor(Math.random() * objectiveSelection.length);
+    firstObjective = objectiveSelection[Math.floor(Math.random() * objectiveSelection.length)];
+    secondObjective = objectiveSelection[Math.floor(Math.random() * objectiveSelection.length)];
 
     while (secondObjective === firstObjective) {
-      secondObjective = Math.floor(Math.random() * objectiveSelection.length);
+      secondObjective = objectiveSelection[Math.floor(Math.random() * objectiveSelection.length)];
     }
     players[i].objectives.push(firstObjective);
     players[i].objectives.push(secondObjective);
@@ -222,37 +222,39 @@ function gameUpdate() {
       game.dirty = true;
     }
 
-    if (new Date().valueOf() - game.roundStart >= constants['ROUND_LENGTH']) {
-      game.round++;
+    if (new Date().valueOf() - game.roundStart >= constants['ROUND_LENGTH_MINIMUM']) {
+      if (Math.random() <= (new Date().valueOf() - game.roundStart) / constants['ROUND_LENGTH_TARGET']) {
+        game.round++;
 
-      if (game.round > constants['ROUNDS_PER_GAME']) {
-        game.state = constants['GAME_STATE']['FINAL_SCORE'];
-      } else {
-        game.state = constants['GAME_STATE']['SCORE'];
-        game.scoreStart = new Date().valueOf();
+        if (game.round > constants['ROUNDS_PER_GAME']) {
+          game.state = constants['GAME_STATE']['FINAL_SCORE'];
+        } else {
+          game.state = constants['GAME_STATE']['SCORE'];
+          game.scoreStart = new Date().valueOf();
 
-        game.addedObjectivesCount = [];
-        for (var i = 0; i < game.addedObjectives.length; i++) {
-          if (game.addedObjectivesCount[game.addedObjectives[i]]) {
-            game.addedObjectivesCount[game.addedObjectives[i]]++;
-          } else {
-            game.addedObjectivesCount[game.addedObjectives[i]] = 1;
+          game.addedObjectivesCount = [];
+          for (var i = 0; i < game.addedObjectives.length; i++) {
+            if (game.addedObjectivesCount[game.addedObjectives[i]]) {
+              game.addedObjectivesCount[game.addedObjectives[i]]++;
+            } else {
+              game.addedObjectivesCount[game.addedObjectives[i]] = 1;
+            }
+          }
+
+          game.addedObjectives = [];
+
+          game.leadPlayer = 0;
+          for (i = 0; i < game.players.length; i++) {
+            if (game.players[i].score > game.players[game.leadPlayer].score) {
+              game.leadPlayer = i;
+            }
+
+            game.players[i].hasDrunk = false;
           }
         }
 
-        game.addedObjectives = [];
-
-        game.leadPlayer = 0;
-        for (i = 0; i < game.players.length; i++) {
-          if (game.players[i].score > game.players[game.leadPlayer].score) {
-            game.leadPlayer = i;
-          }
-
-          game.players[i].hasDrunk = false;
-        }
+        game.dirty = true;
       }
-
-      game.dirty = true;
     }
   }
 
