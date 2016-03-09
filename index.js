@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var constants = require('./app/constants.js');
-var mustache = require('mustache');
+var mystiko = require('./app/WitchesBrew.js')
 
 var rooms = {};
 
@@ -35,7 +35,7 @@ if (!testMode) {
 
     console.log('Running tests, starting game');
 
-    testRoom.intervalId = setInterval(gameUpdate.bind(testRoom), constants['UPDATE_INTERVAL']);
+    testRoom.intervalId = setInterval(mystiko.update.bind(testRoom, io), constants['UPDATE_INTERVAL']);
 
     console.log('Adding test players');
   })();
@@ -50,63 +50,14 @@ function handleClientMessage(data) {
     socket.join(room.name);
     socket.gameRoom = room.name;
 
-    rooms[socket.gameRoom].intervalId = setInterval(gameUpdate.bind(rooms[socket.gameRoom]), constants['UPDATE_INTERVAL']);
+    rooms[socket.gameRoom].intervalId = setInterval(mystiko.update.bind(rooms[socket.gameRoom], io), constants['UPDATE_INTERVAL']);
     console.log('game created', room.name);
-  }
-
-  if (data.type === 'player-join') {
+  } else if (data.type === 'player-join') {
     socket.join(data.room);
     socket.gameRoom = data.room;
-    handlePlayerJoin(data);
-  }
-
-  if (data.type === 'player-drink') {
-    data.gameRoom = socket.gameRoom;
-    console.log('handling player drink');
-    handlePlayerDrink(data);
-  }
-
-  if (data.type === 'game-start') {
-    handleGameStart(socket.gameRoom);
-  }
-}
-
-function handlePlayerJoin(data) {
-  rooms[data.room].players.push(data.player);
-  rooms[data.room].dirty = true;
-
-  console.log('player joined: ' + data.player.name + ' ' + data.room);
-}
-
-function handlePlayerDrink(data) {
-  var game = rooms[data.gameRoom];
-
-  console.log('looking for drinking player ' + data.name);
-  for (var i = 0; i < game.players.length; i++) {
-    if (game.players[i].name === data.name && !game.players[i].hasDrunk) {
-      console.log('drinking player found ' + game.players[i].name);
-      game.players[i].hasDrunk = true;
-
-      for (var i2 = 0; i2 < game.addedObjectives.length; i2++) {
-        if (game.addedObjectives[i2] === game.players[i].objectives[0] ||
-            game.addedObjectives[i2] === game.players[i].objectives[1]) {
-          game.players[i].score++;
-        }
-      }
-
-      console.log(game.players[i] + ' just drank and their score is now ' + game.players[i].score);
-      game.isDirty = true;
-      break;
-    }
-  }
-}
-
-function handleGameStart(gameRoom) {
-  configurePlayers(gameRoom);
-  rooms[gameRoom].dirty = true;
-  console.log('Starting new game with players: ');
-  for (var i = 0; i < rooms[gameRoom].players.length; i++) {
-    console.log(rooms[gameRoom].players[i].name);
+    mystiko.trigger(data.type, [rooms[data.room], data]);
+  } else {
+    mystiko.trigger(data.type, [rooms[data.room], data]);
   }
 }
 
@@ -124,178 +75,8 @@ function createRoom() {
     }
   }
 
-  rooms[roomName] = {
-    players: [],
-    state: constants['GAME_STATE']['PLAYER_JOIN'],
-    round: 1,
-    roundStart: 0,
-    scoreStart: 0,
-    dirty: true,
-    name: roomName,
-    objectives: [],
-    addedObjectives: [],
-    addedObjectivesCount: [],
-    lastObjectiveAdd: constants['OBJECTIVE_ADD_INTERVAL'],
-    leadPlayer: 0,
-    winner: {
-      name: '',
-      score: 0
-    }
-  };
+  rooms[roomName] = mystiko.trigger('create-room', [roomName]);
 
   console.log('room created: ', roomName);
   return rooms[roomName];
-}
-
-function configurePlayers(roomName) {
-  var game = rooms[roomName];
-  var players = game.players;
-  var objectiveSelection = [];
-  var possibleObjective = 0;
-  var objectiveFound = true;
-  var firstObjective = 0;
-  var secondObjective = 0;
-
-  while (objectiveSelection.length < constants['OBJECTIVE_SELECTION']) {
-    objectiveFound = true;
-    possibleObjective = Math.floor(Math.random() * constants['OBJECTIVES'].length);
-
-    for (var i = 0; i < objectiveSelection.length; i++) {
-      if (constants['OBJECTIVES'][possibleObjective].name === constants['OBJECTIVES'][objectiveSelection[i]].name ||
-          constants['OBJECTIVES'][possibleObjective].color === constants['OBJECTIVES'][objectiveSelection[i]].color ||
-          constants['OBJECTIVES'][possibleObjective].shape === constants['OBJECTIVES'][objectiveSelection[i]].shape) {
-        objectiveFound = false;
-        break;
-      }
-    }
-
-    if (objectiveFound) {
-      objectiveSelection.push(possibleObjective);
-    }
-  }
-
-  for (i = 0; i < players.length; i++) {
-    firstObjective = objectiveSelection[Math.floor(Math.random() * objectiveSelection.length)];
-    secondObjective = objectiveSelection[Math.floor(Math.random() * objectiveSelection.length)];
-
-    while (secondObjective === firstObjective) {
-      secondObjective = objectiveSelection[Math.floor(Math.random() * objectiveSelection.length)];
-    }
-    players[i].objectives.push(firstObjective);
-    players[i].objectives.push(secondObjective);
-  }
-
-  game.timeStarted = new Date().valueOf();
-  game.state = constants['GAME_STATE']['INTRO'];
-  game.objectives = objectiveSelection.slice(0);
-}
-
-function generateFortune(name) {
-  return mustache.render('{{name}} will {{a}} {{b}} {{c}} in {{d}}.', {
-    name: name,
-    a: constants['FORTUNE'][0][Math.floor(Math.random() * constants['FORTUNE'][0].length)],
-    b: constants['FORTUNE'][1][Math.floor(Math.random() * constants['FORTUNE'][1].length)],
-    c: constants['FORTUNE'][2][Math.floor(Math.random() * constants['FORTUNE'][2].length)],
-    d: constants['FORTUNE'][3][Math.floor(Math.random() * constants['FORTUNE'][3].length)],
-  });
-}
-
-function gameUpdate() {
-  var game = this;
-
-  if (game.state === constants['GAME_STATE']['PLAYER_JOIN']) {
-
-  }
-
-  if (game.state === constants['GAME_STATE']['INTRO']) {
-    if (new Date().valueOf() - game.timeStarted >= constants['INTRO_LENGTH']) {
-      game.state = constants['GAME_STATE']['ROUND'];
-      game.roundStart = new Date().valueOf();
-      game.dirty = true;
-    }
-  }
-
-  if (game.state === constants['GAME_STATE']['ROUND']) {
-    if (new Date().valueOf() - game.lastObjectiveAdd >= constants['OBJECTIVE_ADD_INTERVAL']) {
-      game.addedObjectives.push(game.objectives[Math.floor(Math.random() * game.objectives.length)]);
-      game.lastObjectiveAdd = new Date().valueOf();
-      game.dirty = true;
-    }
-
-    if (new Date().valueOf() - game.roundStart >= constants['ROUND_LENGTH_MINIMUM']) {
-      if (Math.random() <= (new Date().valueOf() - game.roundStart) / constants['ROUND_LENGTH_TARGET']) {
-        game.round++;
-
-        if (game.round > constants['ROUNDS_PER_GAME']) {
-          game.state = constants['GAME_STATE']['FINAL_SCORE'];
-        } else {
-          game.state = constants['GAME_STATE']['SCORE'];
-          game.scoreStart = new Date().valueOf();
-
-          game.addedObjectivesCount = [];
-          for (var i = 0; i < game.addedObjectives.length; i++) {
-            if (game.addedObjectivesCount[game.addedObjectives[i]]) {
-              game.addedObjectivesCount[game.addedObjectives[i]]++;
-            } else {
-              game.addedObjectivesCount[game.addedObjectives[i]] = 1;
-            }
-          }
-
-          game.addedObjectives = [];
-
-          game.leadPlayer = 0;
-          for (i = 0; i < game.players.length; i++) {
-            if (game.players[i].score > game.players[game.leadPlayer].score) {
-              game.leadPlayer = i;
-            }
-
-            game.players[i].hasDrunk = false;
-          }
-        }
-
-        game.dirty = true;
-      }
-    }
-  }
-
-  if (game.state === constants['GAME_STATE']['SCORE']) {
-    if (new Date().valueOf() - game.scoreStart >= constants['SCORE_LENGTH']) {
-      game.state = constants['GAME_STATE']['ROUND'];
-      game.roundStart = new Date().valueOf();
-      game.dirty = true;
-    }
-  }
-
-  if (game.state === constants['GAME_STATE']['FINAL_SCORE']) {
-    var highScore = game.players[0].score;
-    var highScoreIndex = 0;
-
-    console.log('game stopped');
-    clearInterval(game.intervalId);
-
-    for (var i = 1; i < game.players.length; i++) {
-      if (game.players[i].score > highScore) {
-        highScore = game.players[i].score;
-        highScoreIndex = i;
-      }
-    }
-
-    game.winner = {
-      name: game.players[highScoreIndex].name,
-      score: highScore,
-      fortune: generateFortune(game.players[highScoreIndex].name)
-    };
-
-    game.dirty = true;
-  }
-
-  if (!testMode && game.dirty) {
-    io.to(game.name).emit('', {
-      type: 'game',
-      game: game
-    });
-    //console.log('game is in: ' + game.state + ' state at ' + game.round + ' round');
-
-    game.dirty = false;
-  }
 }

@@ -42,18 +42,19 @@
     actions.viewSelect('waiting');
   };
 
-  actions.playerDrink = function (name) {
+  actions.playerDrink = function (name, roomName) {
     app.dispatcher.dispatch({
       type: 'player-drink',
       name: name,
+      room: roomName,
       remote: true
     });
   };
 
-  actions.startGame = function () {
+  actions.startGame = function (roomName) {
     app.dispatcher.dispatch({
       type: 'game-start',
-      room: '',
+      room: roomName,
       remote: true
     });
   };

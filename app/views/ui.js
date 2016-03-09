@@ -109,8 +109,10 @@
   };
 
   $drink.on('click', function (e) {
+    var clientState = app.stores.client.getState();
+
     if (!$drink.hasClass('disabled')) {
-      app.actions.playerDrink(app.stores.client.getState().clientName);
+      app.actions.playerDrink(clientState.clientName, clientState.room);
       $drink.addClass('disabled');
     }
   });
@@ -127,7 +129,7 @@
   });
 
   $gameStart.on('click', function (e) {
-    app.actions.startGame();
+    app.actions.startGame(app.stores.client.getState().room);
   });
 
   $viewSelect.on('click', function (e) {
